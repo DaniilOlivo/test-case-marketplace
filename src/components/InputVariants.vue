@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+
 
 interface Option {
     label: string,
@@ -11,13 +11,9 @@ interface Props {
     options: Option[]
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const model = defineModel()
-
-onMounted(() => {
-    model.value = props.options[0].key
-})
 </script>
 
 <template>

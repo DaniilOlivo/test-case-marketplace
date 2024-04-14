@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { Product } from "../interfaces"
 import InputVariants from './InputVariants.vue';
 import ProductBlock from './ProductBlock.vue';
@@ -24,6 +24,24 @@ const listMaterials = computed(() => {
     }))
     return resultList
 })
+
+const currentSort = ref("+")
+const currentMaterial = ref("all")
+
+const products = computed(() => {
+    let filterItems = store.items
+    if (currentMaterial.value != "all") {
+        filterItems = store.itemsByMaterial(parseInt(currentMaterial.value))
+    }
+
+    return filterItems.sort((a, b) => {
+        if (currentSort.value == "+") {
+            return a.price.current_price - b.price.current_price
+        } else {
+            return b.price.current_price - a.price.current_price
+        }
+    })
+})
 </script>
 
 <template>
@@ -31,15 +49,17 @@ const listMaterials = computed(() => {
         <div class="filtets-block">
             <InputVariants
                 label="Сортировать по:" 
-                :options="listSort"></InputVariants>
+                :options="listSort"
+                v-model="currentSort"></InputVariants>
             <InputVariants
                 label="Материал:"
-                :options="listMaterials"></InputVariants>
+                :options="listMaterials"
+                v-model="currentMaterial"></InputVariants>
         </div>
 
         <div class="products-view">
             <ProductBlock
-                v-for="product in store.items"
+                v-for="product in products"
                 :key="product.id"
                 v-bind="product as Product"></ProductBlock>
         </div>
