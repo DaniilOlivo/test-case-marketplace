@@ -1,8 +1,9 @@
 :root {
   --color-input: #F2F2F2;
   --color-input-hover: #e0e0e0;
-  --color-additional-text: #828282;
+  --color-additional-text: #888888;
   --color-accent: #EB5757;
+  --color-border: #EEEEEE;
 }
 
 *,
