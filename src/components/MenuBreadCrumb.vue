@@ -30,7 +30,7 @@ const classItem = "menu-bread-crumb__item"
 
 <template>
     <h3 class="menu-bread-crumb">
-        <template v-for="item in listMenu">
+        <template v-for="item in listMenu" :key="item">
             <span :class="[classItem, {[classItem + '_active']: item.active}]">
                 {{ item.text }}
             </span>
