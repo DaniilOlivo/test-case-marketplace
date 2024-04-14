@@ -8,9 +8,11 @@ export const useCatalogStore = defineStore("catalog", () => {
     const items = ref(dataItems)
     const materials = ref(dataMaterials)
 
+    const favorites : string[] = []
+
     const itemsByMaterial = computed(() => (materialId : number)  => {
         return items.value.filter(item => item.material == materialId)
     })
 
-    return { items, materials, itemsByMaterial }
+    return { items, materials, favorites, itemsByMaterial }
 })

@@ -1,10 +1,23 @@
 <script setup lang="ts">
 import basketIcon from "../assets/icons/basket.png"
 import favoriteIcon from "../assets/icons/favorite.png"
+import favoriteActiveIcon from "../assets/icons/favorite_select.png"
 
+import { computed } from "vue"
 import type { Product } from "../interfaces"
+import { useCatalogStore } from "@/stores/catalog"
 
-defineProps<Product>()
+const store = useCatalogStore()
+
+const props = defineProps<Product>()
+
+const isFavorite = computed(() => Boolean(store.favorites.find(id => id == props.id)))
+
+function clickFavorite() {
+    const listFavor = store.favorites
+    if (isFavorite.value) listFavor.splice(listFavor.indexOf(props.id), 1)
+    else listFavor.push(props.id)
+}
 </script>
 
 <template>
@@ -25,7 +38,7 @@ defineProps<Product>()
 
             <div class="control-block">
                 <img :src="basketIcon">
-                <img :src="favoriteIcon">
+                <img :src="isFavorite ? favoriteActiveIcon : favoriteIcon" @click="clickFavorite">
             </div>
         </div>
     </article>
