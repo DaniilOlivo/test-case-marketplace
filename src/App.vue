@@ -24,4 +24,10 @@ main {
   font-weight: 600;
   font-size: 36px;
 }
+
+@media (max-width: 740px) {
+  main {
+    align-items: center;
+  }
+}
 </style>

@@ -84,4 +84,10 @@ const products = computed(() => {
     justify-content: center;
     gap: 40px;
 }
+
+@media (max-width: 740px) {
+    .filtets-block {
+        justify-content: center;
+    }
+}
 </style>
