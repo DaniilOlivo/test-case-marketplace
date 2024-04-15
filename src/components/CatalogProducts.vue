@@ -81,6 +81,7 @@ const products = computed(() => {
 .products-view {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 40px;
 }
 </style>

@@ -24,13 +24,15 @@ function clickBasket() {
     if (inBasket.value) store.removeId('basket', props.id)
     else store.addId('basket', props.id)
 }
+
+const imgUrl = new URL("../data" + props.image.url, import.meta.url)
 </script>
 
 <template>
     <article class="product-block">
         <div class="product-block__discount" v-if="price.old_price">Скидка</div>
 
-        <div class="product-block__image">{{ image.url }}</div>
+        <img class="product-block__image" :src="imgUrl.href">
 
         <h6 class="product-block__code">{{ code }}</h6>
 
