@@ -45,8 +45,8 @@ const imgUrl = new URL("../data" + props.image.url, import.meta.url)
             </div>
 
             <div class="control-block">
-                <img :src="inBasket ? basketActiveIcon : basketIcon" @click="clickBasket">
-                <img :src="isFavorite ? favoriteActiveIcon : favoriteIcon" @click="clickFavorite">
+                <img class="control-block__icon" :src="inBasket ? basketActiveIcon : basketIcon" @click="clickBasket">
+                <img class="control-block__icon" :src="isFavorite ? favoriteActiveIcon : favoriteIcon" @click="clickFavorite">
             </div>
         </div>
     </article>
@@ -130,5 +130,10 @@ const imgUrl = new URL("../data" + props.image.url, import.meta.url)
     display: flex;
     gap: 20px;
     margin-right: 12px;
+}
+
+.control-block__icon {
+    width: 20px;
+    height: 20px;
 }
 </style>
